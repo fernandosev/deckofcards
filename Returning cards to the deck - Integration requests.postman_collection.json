@@ -18,7 +18,7 @@
               "",
               "    pm.expect(pm.response.code).to.eql(200);",
               "",
-              "    pm.sendRequest(`localhost:8000/api/deck/${deckID}/return`, function (err, response) {",
+              "    pm.sendRequest(`http://deckofcardsapi.com/api/deck/${deckID}/return`, function (err, response) {",
               "        const responseJson = response.json();",
               "",
               "        pm.expect(response.code).to.eql(200);",
@@ -37,8 +37,8 @@
         "method": "GET",
         "header": [],
         "url": {
-          "raw": "localhost:8000/api/deck/new/shuffle/?deck_count=1",
-          "host": ["localhost:8000/api/deck"],
+          "raw": "http://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=1",
+          "host": ["http://deckofcardsapi.com/api/deck"],
           "path": ["new", "shuffle", ""],
           "query": [
             {
