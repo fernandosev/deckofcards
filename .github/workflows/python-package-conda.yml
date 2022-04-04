@@ -22,10 +22,12 @@ jobs:
       run: |
         conda install django==3.2.5
         conda install -c conda-forge django-cors-headers
-    - name: Run postman tests
+    - name: Run the API
       run: |
         python manage.py runserver 127.0.0.1:8000
-        sleep 15
+    - name: Run postman tests
+      run: |
+        sleep 5
         newman run "Returning cards to the deck - Integration requests.postman_collection.json"
       env:
         baseURL: "localhost:8000/api/"
