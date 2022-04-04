@@ -25,7 +25,6 @@ jobs:
     - name: Run the API
       run: |
         nohup python manage.py runserver 127.0.0.1:8000 &
-        sleep 5
         newman run "Returning cards to the deck - Integration requests.postman_collection.json"
       env:
         baseURL: "localhost:8000/api/"
