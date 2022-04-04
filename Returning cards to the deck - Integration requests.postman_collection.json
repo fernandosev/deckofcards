@@ -37,9 +37,9 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{baseURL}}deck/new/shuffle/?deck_count=1",
+					"raw": "localhost:8000/api/deck/new/shuffle/?deck_count=1",
 					"host": [
-						"{{baseURL}}deck"
+						"localhost:8000/api/deck"
 					],
 					"path": [
 						"new",
