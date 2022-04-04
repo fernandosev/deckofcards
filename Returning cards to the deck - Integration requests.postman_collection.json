@@ -1,0 +1,114 @@
+{
+	"info": {
+		"_postman_id": "1b11913a-8047-4325-a790-58eb565c9141",
+		"name": "Returning cards to the deck - Integration requests",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Returning drawn cards",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Returning drawn cards\", function(){",
+							"    const responseJson = pm.response.json();",
+							"    const deckID = responseJson.deck_id;",
+							"",
+							"    pm.expect(pm.response.code).to.eql(200);",
+							"",
+							"    pm.sendRequest(`${pm.variables.get('baseURL')}deck/${deckID}/return`, function (err, response) {",
+							"        const responseJson = response.json();",
+							"",
+							"        pm.expect(response.code).to.eql(200);",
+							"",
+							"        pm.expect(responseJson.success).to.eql(true);",
+							"        pm.expect(typeof responseJson.deck_id).to.eql(\"string\");",
+							"        pm.expect(typeof responseJson.remaining).to.eql(\"number\");",
+							"    });",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseURL}}deck/new/shuffle/?deck_count=1",
+					"host": [
+						"{{baseURL}}deck"
+					],
+					"path": [
+						"new",
+						"shuffle",
+						""
+					],
+					"query": [
+						{
+							"key": "deck_count",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Returning from pile to deck",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Returning from pile to deck\", function(){",
+							"    const baseURL = pm.variables.get('baseURL');",
+							"    const deckID = pm.variables.get('deck_id');",
+							"    const pileName = pm.variables.get('pile_name');",
+							"",
+							"    pm.expect(pm.response.code).to.eql(200);",
+							"    ",
+							"    pm.sendRequest(`${baseURL}deck/${deckID}/pile/${pileName}/return/`, function (err, response) {",
+							"        const responseJson = response.json();",
+							"",
+							"        pm.expect(response.code).to.eql(200);",
+							"",
+							"        pm.expect(responseJson.success).to.eql(true);",
+							"        pm.expect(typeof responseJson.deck_id).to.eql(\"string\");",
+							"        pm.expect(typeof responseJson.remaining).to.eql(\"number\");",
+							"    });",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseURL}}deck/{{deck_id}}/pile/{{pile_name}}/add/?cards=AS,2S",
+					"host": [
+						"{{baseURL}}deck"
+					],
+					"path": [
+						"{{deck_id}}",
+						"pile",
+						"{{pile_name}}",
+						"add",
+						""
+					],
+					"query": [
+						{
+							"key": "cards",
+							"value": "AS,2S"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
