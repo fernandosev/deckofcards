@@ -24,7 +24,7 @@ jobs:
         conda install -c conda-forge django-cors-headers
     - name: Run the API
       run: |
-        python manage.py runserver 127.0.0.1:8000
+        nohup python manage.py runserver 127.0.0.1:8000
     - name: Run postman tests
       run: |
         sleep 5
