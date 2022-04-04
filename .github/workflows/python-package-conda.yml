@@ -22,3 +22,6 @@ jobs:
       run: |
         conda install django==3.2.5
         conda install -c conda-forge django-cors-headers
+    - name: Run the API
+      run: |
+        conda manage.py migrate
