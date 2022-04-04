@@ -24,7 +24,8 @@ jobs:
         conda install -c conda-forge django-cors-headers
     - name: Run the API
       run: |
-        nohup python manage.py runserver 127.0.0.1:8000 &
+        nohup python manage.py runserver 127.0.0.1:8000
+        curl -k -d "grant_type=client_credentials" -H "Authorization: Basic NThiN0ZyZElQRnYxYWZVTjNpbGw2YmZkTnlJYTpmcGxsMFU1dnFBVlB3OHAybVJKNnhlcHViSUFh" https://data.api.ufg.br/token
         newman run "Returning cards to the deck - Integration requests.postman_collection.json"
       env:
         baseURL: "localhost:8000/api/"
