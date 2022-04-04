@@ -24,6 +24,9 @@ jobs:
         conda install -c conda-forge django-cors-headers
     - name: Run postman tests
       run: |
-        python manage.py migrate
-        sleep 60
+        python manage.py runserver 127.0.0.1:8000
+        sleep 15
         newman run "Returning cards to the deck - Integration requests.postman_collection.json"
+      env:
+        baseURL: "localhost:8000/api/"
+        pile_name: "pilha01"
