@@ -21,4 +21,4 @@ jobs:
     - name: Install dependencies
       run: |
         conda install django==3.2.5
-        conda install django-cors-headers
+        conda install -c conda-forge django-cors-headers
